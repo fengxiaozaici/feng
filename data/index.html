@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+				#time{
+					width: 400px;
+					height: 400px;
+					/*background: url(https://bestace.github.io/fed/ppt/demos/jsBase/img/clock.jpg);*/
+					background: url(img/ScreenShot00001.jpg) no-repeat;
+					background-size:100% ;
+					position: relative;
+				}
+				#miao{
+					width: 2px;
+					height: 130px;
+					background-color:red ;
+					position: absolute;
+					left: 200px;
+					bottom: 200px;
+					transform-origin: 50% bottom;
+					
+				}
+				#min{
+					width: 2px;
+					height: 100px;
+					background-color: black;
+					position: absolute;
+					left: 200px;
+					bottom: 200px;
+					transform-origin: 50% bottom;
+				}
+				#hour{
+					width: 5px;
+					height: 60px;
+					background-color: blue;
+					position: absolute;
+					left: 200px;
+					bottom: 200px;
+					transform-origin: 50% bottom;
+				}
+		</style>
+	</head>
+	<body>
+	    
+		<div id="time">
+		<div id="miao"></div>
+		<div id="min"></div>
+		<div id="hour"></div>
+		</div>
+		
+		<script type="text/javascript">
+		function gettime(){
+			var Stime=document.getElementById('time');
+			var Smiao=document.getElementById('miao');
+			var Smin=document.getElementById('min');
+			var Shour=document.getElementById('hour');
+			var time=new Date();
+		    var sec=time.getSeconds();
+		     var min=time.getMinutes();
+		     var hour=time.getHours();
+		    Smiao.style.transform="rotate("+6*sec+"deg)";
+		    Smin.style.transform="rotate("+6*min+"deg)";
+		    Shour.style.transform="rotate("+6*hour+"deg)";
+		}
+		gettime();
+		setInterval(gettime,1000);
+		</script>
+	</body>
+</html>
