@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			body{
+				background-color:bisque ;
+				color: white;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="gong">中国共产党万岁！</h1>
+		<h2 id="guo">中国共和国万岁</h2>
+		<script type="text/javascript">
+		    var sgong=document.getElementById('gong');
+			var sguo=document.getElementById('guo');
+			function dazi(text,xunhuan)
+			{
+				var stext=text;
+                var str=stext.innerText;
+                stext.innerText="";
+                var i=0;
+               var a=setInterval(function(){
+               	if(i<str.length)
+               	{
+               		stext.innerText+=str[i];
+               	}
+               	else {
+               		if(xunhuan)
+               		{
+               			i=-1;
+               			stext.innerText="";
+               		}else{
+               			clearInterval(a);
+               		}
+               	}
+               	sgong.style.color="hsl("+i*100+",50%,50%)";
+               	sguo.style.color="hsl("+i*100+",50%,50%)";
+               	i++;
+               },200);
+			}
+			
+			dazi(sgong,false);
+			dazi(sguo,true);
+		</script>
+	</body>
+</html>
