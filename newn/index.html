@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div id="a">
+	<input type="button" value="1" />
+	<input type="button" value="2" />	
+	<input type="button" value="3" />	
+	<input type="button" value="4" />	
+	<input type="button" value="5" />
+	<input type="button" value="6" />	
+		</div>
+		<script type="text/javascript">
+			var an=document.getElementsByTagName("input");
+			for(var i = 1; i < an.length; i++ )
+			{
+				an[i].addEventListener("click",
+				(function(n){
+				return function()
+				{
+					console.log('按下了'+n+'号按钮');
+				}
+				})(i)
+			);
+			}
+		</script>
+	</body>
+</html>
