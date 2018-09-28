@@ -41,8 +41,13 @@
 				sb.style.top=event.pageY+"px";
 				var bx=sa.getBoundingClientRect().left-sb.getBoundingClientRect().left;
 			    var by=sa.getBoundingClientRect().top-sb.getBoundingClientRect().top;
+				if(event.pageX<=450&&event.pageY<=278){
+			    	sb.style.opacity=1
 			    sb.style.backgroundPositionX=2.442*bx-75+"px";
 			    sb.style.backgroundPositionY=2.442*by-75+"px";
+				}
+				else{sb.style.opacity=0}
+			    }
 			}
 			sa.addEventListener("mouseover",move);
 		</script>
