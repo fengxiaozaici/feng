@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>雪花</title>
+	</head>
+	<style type="text/css">
+		body{
+			background-color: midnightblue;
+		}
+		.a{
+			position: absolute;
+			margin: auto;
+			text-align: center;
+			left: 0px;
+			right: 0px;
+			top: 180px;
+			bottom: 0px;
+		    color: white;
+		    font-size: 40px;
+		    z-index: 0;
+		}
+		.snow{
+			width: 20px;
+			height: 20px;
+			background-color: white;
+			border-radius: 100%;
+			position: fixed;
+			opacity: 0.8;
+			 filter: blur(4px);
+		}
+	</style>
+	<body>
+		<div class="a">
+		<h1>Happy Holidays</h1>
+		</div>
+		<!--<div class="snow"></div>-->
+		<script type="text/javascript">
+//			var snow=document.querySelector(".snow");
+//			var y=0;
+//			var x=Math.random()*window.innerWidth;
+//			snow.style.left=x+"px";
+//			function run () {
+//				y=y+10;
+//				console.log(y);
+//				if(y>window.innerHeight+10)
+//				{
+//					y=0;
+//			    x=Math.random()*window.innerWidth;
+//				}
+//				snow.style.top=y+"px";
+//				snow.style.left=x+"px";
+//				setTimeout(run,100);
+//			}
+//			run();
+
+var snow;
+var winW = window.innerWidth;
+var winH = window.innerHeight;
+function random(min,max,isInt)
+{
+	var a=min+Math.random()*(max-min);
+	return isInt?parseInt(a):a;
+}
+class Snow {
+	constructor(){
+		this.size=random(8,15,true);
+		this.alpha=random(0.2,0.5,false);
+		this.blur=random(1,2,false);
+		this.x=random(0,window.innerWidth,true);
+		this.y=random(-(window.innerHeight/2),0,true);
+		this.z=random(1,20,true);
+		
+		
+		this.speed=random(1,3,false);
+		this.angle = 0;
+		this.angleSpeed = random(0, 2 * Math.PI, false) / 100;
+		this.o = null;
+	}
+	draw(){
+		this.o=document.createElement("div");
+		this.o.className="snow";
+		document.body.appendChild(this.o);
+		this.o.style.width=this.o.style.height=this.size+"px";
+		this.o.style.opacity = this.blur;
+		this.o.style.filter = `blur(${this.blur}px)`;
+	    this.o.style.top=this.y+"px";
+	    this.o.style.left=this.x+"px";
+	    
+			}
+	
+	
+	
+	update() {
+					this.angle += this.angleSpeed;
+					this.x += Math.cos(this.angle)*weather.wind;
+					this.y += this.speed;
+					this.o.style.top = this.y + "px";
+					this.o.style.left = this.x + "px";
+
+					if(this.y > window.innerHeight + 10) {
+						this.y = random(-window.innerHeight / 2, 0, true);
+					}
+	}		
+}
+class Weather{
+	constructor(snowNum,wind){
+		this.snowNum=snowNum;
+		this.wind=wind;
+		this.snowArray=[];
+	}
+	createSnow()
+	{
+		for (var i=0;i<this.snowNum;i++) {
+			snow=new Snow();
+			snow.draw();
+			this.snowArray.push(snow);
+		}
+	}
+	runSnow() {
+					var that = this;
+					function run () {
+						for(var i = 0; i < that.snowNum; i++) {
+							that.snowArray[i].update();
+						}
+						window.requestAnimationFrame(run);
+					}
+					window.requestAnimationFrame(run);
+				}
+}
+var weather = new Weather(200, 3);
+			weather.createSnow();
+			weather.runSnow();
+		</script>
+		
+		
+	</body>
+</html>
